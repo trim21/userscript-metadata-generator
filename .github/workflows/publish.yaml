@@ -1,0 +1,25 @@
+name: publish
+
+on:
+  create:
+    tags:
+      - 'v*'
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          registry-url: https://registry.npmjs.org/
+          cache: yarn
+
+      - run: yarn
+      - run: yarn build
+
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

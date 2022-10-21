@@ -1,0 +1,55 @@
+{
+  "name": "userscript-metadata-generator",
+  "version": "0.0.0",
+  "description": "A package to generate userscript metadata string from object",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "format": "prettier -w ./",
+    "prebuild": "rimraf dist",
+    "build": "tsc && tsc --outdir dist/esm --module es2020 --declaration false",
+    "test": "jest"
+  },
+  "engines": {
+    "node": ">=16.8.0"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "useTabs": false,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "all",
+    "endOfLine": "lf",
+    "semi": true
+  },
+  "files": [
+    "package.json",
+    "dist/"
+  ],
+  "repository": {
+    "url": "https://github.com/trim21/userscript-metadata-generator",
+    "type": "git"
+  },
+  "keywords": [
+    "userscript",
+    "metadata"
+  ],
+  "author": {
+    "name": "Trim21",
+    "email": "trim21me@gmail.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@jest/globals": "^29.2.1",
+    "jest": "^29.2.1",
+    "jest-config": "^29.2.1",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  }
+}
