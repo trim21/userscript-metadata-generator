@@ -25,7 +25,7 @@ type Value = string | string[] | undefined | null | { [key: string]: string };
 type Line = [string, string];
 
 type Localization = {
-  [key: string]: string
+  [key: string]: string;
 };
 
 type Metadata = {
@@ -33,7 +33,7 @@ type Metadata = {
   author?: Author;
   resource?: { [keys: string]: string };
   description?: Localization;
-  [keys: string]: Value
+  [keys: string]: Value;
 };
 
 export default function (metadata: Metadata) {

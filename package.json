@@ -4,13 +4,17 @@
   "description": "A package to generate userscript metadata string from object",
   "types": "./dist/esm/index.d.ts",
   "exports": {
-    "import": "./dist/esm/index.js",
-    "require": "./src/cjs_shim.cjs"
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/shim.cjs"
+    },
+    "./*": "./"
   },
   "scripts": {
     "format": "prettier -w ./",
     "prebuild": "rimraf dist",
-    "build": "tsc  --declaration false && tsc --outdir dist/esm --module es2020",
+    "build": "tsc  --declaration false && tsc --outdir dist/esm --module es2020 --allowJs false",
+    "prepublishOnly": "npm run build",
     "test": "jest"
   },
   "engines": {

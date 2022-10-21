@@ -1,4 +1,4 @@
-const {describe, expect, test} = require('@jest/globals');
+const { describe, expect, test } = require('@jest/globals');
 
 const generate = require('../src/index');
 
@@ -8,7 +8,7 @@ function generateLines(o) {
 
 describe('generate metadata block', function () {
   test('string value', function () {
-    expect(generateLines({name: 's'})).toEqual(['// ==UserScript==', '// @name   s', '// ==/UserScript==']);
+    expect(generateLines({ name: 's' })).toEqual(['// ==UserScript==', '// @name   s', '// ==/UserScript==']);
   });
 
   test('array value', function () {
@@ -36,7 +36,7 @@ describe('generate metadata block', function () {
   });
 
   test('auth only name', function () {
-    expect(generateLines({author: {name: 'trim21'}})).toEqual([
+    expect(generateLines({ author: { name: 'trim21' } })).toEqual([
       '// ==UserScript==',
       '// @author   trim21',
       '// ==/UserScript==',
@@ -46,7 +46,7 @@ describe('generate metadata block', function () {
   test('auth with email', function () {
     expect(
       generateLines({
-        author: {name: 'trim21', email: 'trim21.me@gmail.com'},
+        author: { name: 'trim21', email: 'trim21.me@gmail.com' },
       }),
     ).toEqual(['// ==UserScript==', '// @author   trim21 <trim21.me@gmail.com>', '// ==/UserScript==']);
   });

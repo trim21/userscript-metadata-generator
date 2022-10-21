@@ -16,5 +16,5 @@
 // @include    /^https://www.tampermonkey.net/.*$/
 // ==/UserScript==
 
-"use strict";
-console.log("hello");
+'use strict';
+console.log('hello');
