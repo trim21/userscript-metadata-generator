@@ -1,6 +1,6 @@
 const {describe, expect, test} = require('@jest/globals');
 
-const {generate} = require('../src/index');
+const generate = require('../src/index');
 
 function generateLines(o) {
   return generate(o).split('\n');
