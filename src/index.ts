@@ -29,10 +29,10 @@ type Localization = {
 };
 
 type Metadata = {
-  name: string;
+  name?: string;
   author?: Author;
-  resource: { [keys: string]: string };
-  description: Localization;
+  resource?: { [keys: string]: string };
+  description?: Localization;
   [keys: string]: Value
 };
 
