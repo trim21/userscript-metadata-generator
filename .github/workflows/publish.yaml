@@ -18,7 +18,6 @@ jobs:
           cache: yarn
 
       - run: yarn
-      - run: yarn build
 
       - run: npm publish --access public
         env:
