@@ -2,17 +2,13 @@
   "name": "userscript-metadata-generator",
   "version": "0.0.2",
   "description": "A package to generate userscript metadata string from object",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/index.js"
-    }
-  },
+  "types": "./dist/esm/index.d.ts",
+  "main": "./src/cjs_shim.cjs",
+  "module": "./dist/esm/index.js",
   "scripts": {
     "format": "prettier -w ./",
     "prebuild": "rimraf dist",
-    "build": "tsc && tsc --outdir dist/esm --module es2020 --declaration false",
+    "build": "tsc  --declaration false && tsc --outdir dist/esm --module es2020",
     "test": "jest"
   },
   "engines": {
@@ -29,6 +25,7 @@
   },
   "files": [
     "package.json",
+    "src/",
     "dist/"
   ],
   "repository": {

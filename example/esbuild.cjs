@@ -2,7 +2,7 @@ const path = require('path')
 
 const esbuild = require('esbuild')
 
-const metadata = require('userscript-metadata-generator');
+const metadata = require('../src/cjs_shim.cjs');
 
 
 esbuild.buildSync({

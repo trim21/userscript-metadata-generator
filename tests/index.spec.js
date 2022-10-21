@@ -3,7 +3,7 @@ const {describe, expect, test} = require('@jest/globals');
 const generate = require('../src/index');
 
 function generateLines(o) {
-  return generate(o).split('\n');
+  return generate.default(o).split('\n');
 }
 
 describe('generate metadata block', function () {
