@@ -24,7 +24,19 @@ function parseAuthor(author: Author): string {
 type Value = string | string[] | undefined | null | { [key: string]: string };
 type Line = [string, string];
 
-export function generate(metadata: { name: string; author?: Author; [keys: string]: Value }) {
+type Localization = {
+  [key: string]: string
+};
+
+type Metadata = {
+  name: string;
+  author?: Author;
+  resource: { [keys: string]: string };
+  description: Localization;
+  [keys: string]: Value
+};
+
+export default function (metadata: Metadata) {
   const lines: Array<Line> = [];
 
   for (const [key, value] of Object.entries(metadata)) {
@@ -34,6 +46,11 @@ export function generate(metadata: { name: string; author?: Author; [keys: strin
 
     if (key === 'author') {
       lines.push([key, parseAuthor(value as Author)]);
+      continue;
+    }
+
+    if (key === 'resource') {
+      lines.push(...anyField(key, resource(value as { [keys: string]: string })));
       continue;
     }
 
@@ -62,10 +79,15 @@ function anyField(key: string, value: Value): Array<[string, string]> {
     return [];
   }
 
-  return Object.entries(value).map(([k, v]) => [`${key}:${k}`, v]);
+  return Object.entries(value).map(([k, v]) => {
+    if (k === '') {
+      return [`${key}`, v];
+    }
+    return [`${key}:${k}`, v];
+  });
 }
 
-export function resource(o: { [keys: string]: string }): Array<string> {
+function resource(o: { [keys: string]: string }): Array<string> {
   const pad = longestLength(Object.keys(o));
   return Object.entries(o).map(([key, value]) => {
     return `${key.padEnd(pad)} ${value}`;

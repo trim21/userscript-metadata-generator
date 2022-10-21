@@ -1,93 +1,83 @@
-# userscript-metadata-webpack-plugin
+# userscript-metadata-generator
 
-`userscript-metadata-webpack-plugin` is a webpack plugin to
-generate userscript metadata comments for UserScript.
+`userscript-metadata-generator` is a package to generate UserScript metadata comments string.
 
 require:
 
 - nodejs >= 16
 
-when using `webpack 4`, install `userscript-metadata-webpack-plugin==0.0.6`
 
-## usage
-
-you can find a full template project in [webpack-userscript-template](https://github.com/Trim21/webpack-userscript-template)
-
-### install
+## install
 
 ```bash
-npm i userscript-metadata-webpack-plugin -D
+npm i userscript-metadata-generator -D
 ```
 
-### configure
+## Usage
 
-`webpack.config.js`
+```typescript
+const path = require('path')
 
-```javascript
-const pkg = require('../package.json');
-const UserScriptMetaDataPlugin = require('userscript-metadata-webpack-plugin');
+const esbuild = require('esbuild')
 
-let metadata = {
-  name: pkg.name,
-  namespace: 'https://trim21.me/',
-  version: pkg.version,
-  author: {
-    name: 'Trim21',
-    email: 'trim21me@gmail.com',
+const metadata = require('userscript-metadata-generator');
+
+// or import generate from 'userscript-metadata-generator';
+
+esbuild.buildSync({
+  entryPoints: [path.resolve(__dirname, "input.js")],
+  banner: {
+    js: metadata({
+      name: {
+        "": "A test", // special key for `@name`
+        'de': 'Ein Test', // localization
+      },
+      version: "0.1.2",
+      author: {
+        name: "trim21",
+        email: "trim21.me@gmail.com",
+      },
+      'run-at': "document-end",
+      resource: {
+        icon1: 'http://www.tampermonkey.net/favicon.ico',
+        icon2: '/images/icon.png',
+        html: 'http://www.tampermonkey.net/index.html',
+        xml: 'http://www.tampermonkey.net/crx/tampermonkey.xml',
+        SRIsecured1: 'http://www.tampermonkey.net/favicon.ico#md5=123434...',
+        SRIsecured2: 'http://www.tampermonkey.net/favicon.ico#md5=123434...;sha256=234234...',
+      },
+      include: [
+        'http://www.tampermonkey.net/*',
+        'http://*',
+        'https://*',
+        '/^https:\/\/www\.tampermonkey\.net\/.*$/',
+      ]
+    }) + '\n',
   },
-  source: pkg.repository.url,
-  supportURL: pkg.repository.url + '/issues',
-  license: 'MIT',
-  match: ['https://bgm.tv/subject/*/edit', 'https://bangumi.tv/subject/*/edit'],
-  require: [
-    `https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js`,
-    `https://cdn.jsdelivr.net/npm/diff2html/bundles/js/diff2html.min.js`,
-    `https://cdn.jsdelivr.net/npm/diff/dist/diff.min.js`,
-  ],
-  grant: ['GM.xmlhttpRequest'],
-  connect: ['example.com', 'www.example.com'],
-  resource: {
-    A: 'https://resource.a',
-    BB: 'https://resource.b',
-  },
-  'run-at': 'document-end',
-};
-
-const config = {
-  // ...
-  // ...
-  plugins: [
-    new UserScriptMetaDataPlugin({
-      metadata,
-      test: /\.user\.js$/, // optional, default /\.user\.js$/
-    }),
-  ],
-};
-
-module.exports = config;
+  outfile: path.resolve(__dirname, "output.js"),
+})
 ```
 
-```javascript
+and you will get output like this:
+
+```js
 // ==UserScript==
-// @name         userscript-metadata-webpack-plugin
-// @namespace    https://trim21.me/
-// @version      0.1.0
-// @author       Trim21 <trim21me@gmail.com>
-// @source       https://github.com/Trim21/userscript-metadata-webpack-plugin
-// @supportURL   https://github.com/Trim21/userscript-metadata-webpack-plugin/issues
-// @license      MIT
-// @match        https://bgm.tv/subject/*/edit
-// @match        https://bangumi.tv/subject/*/edit
-// @require      https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js
-// @require      https://cdn.jsdelivr.net/npm/diff2html/bundles/js/diff2html.min.js
-// @require      https://cdn.jsdelivr.net/npm/diff/dist/diff.min.js
-// @grant        GM.xmlhttpRequest
-// @connect      example.com
-// @connect      www.example.com
-// @resource     A  https://resource.a
-// @resource     BB https://resource.b
-// @run-at       document-end
+// @name       A test
+// @name:de    Ein Test
+// @version    0.1.2
+// @author     trim21 <trim21.me@gmail.com>
+// @run-at     document-end
+// @resource   icon1       http://www.tampermonkey.net/favicon.ico
+// @resource   icon2       /images/icon.png
+// @resource   html        http://www.tampermonkey.net/index.html
+// @resource   xml         http://www.tampermonkey.net/crx/tampermonkey.xml
+// @resource   SRIsecured1 http://www.tampermonkey.net/favicon.ico#md5=123434...
+// @resource   SRIsecured2 http://www.tampermonkey.net/favicon.ico#md5=123434...;sha256=234234...
+// @include    http://www.tampermonkey.net/*
+// @include    http://*
+// @include    https://*
+// @include    /^https://www.tampermonkey.net/.*$/
 // ==/UserScript==
 
-// other js code
+...
 ```
