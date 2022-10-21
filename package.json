@@ -3,8 +3,10 @@
   "version": "0.0.3",
   "description": "A package to generate userscript metadata string from object",
   "types": "./dist/esm/index.d.ts",
-  "main": "./src/cjs_shim.cjs",
-  "module": "./dist/esm/index.js",
+  "exports": {
+    "import": "./dist/esm/index.js",
+    "require": "./src/cjs_shim.cjs"
+  },
   "scripts": {
     "format": "prettier -w ./",
     "prebuild": "rimraf dist",
