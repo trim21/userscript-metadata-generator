@@ -24,15 +24,15 @@ function parseAuthor(author: Author): string {
 type Value = string | string[] | undefined | null | { [key: string]: string };
 type Line = [string, string];
 
-type Localization = {
+type Localization = string | {
   [key: string]: string;
 };
 
 export type Metadata = {
-  name?: string;
+  name?: Localization
+  description?: Localization;
   author?: Author;
   resource?: { [keys: string]: string };
-  description?: Localization;
   [keys: string]: Value;
 };
 
