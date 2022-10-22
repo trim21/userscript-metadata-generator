@@ -6,7 +6,7 @@
   "exports": {
     ".": {
       "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/shim.cjs"
+      "require": "./src/shim.cjs"
     },
     "./*": "./"
   },
@@ -31,8 +31,8 @@
   },
   "files": [
     "package.json",
-    "src/",
-    "dist/"
+    "./src/",
+    "./dist/"
   ],
   "repository": {
     "url": "https://github.com/trim21/userscript-metadata-generator",
