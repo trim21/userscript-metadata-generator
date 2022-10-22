@@ -28,7 +28,7 @@ type Localization = {
   [key: string]: string;
 };
 
-type Metadata = {
+export type Metadata = {
   name?: string;
   author?: Author;
   resource?: { [keys: string]: string };
