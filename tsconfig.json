@@ -26,7 +26,7 @@
     // "moduleDetection": "auto",                        /* Control what method is used to detect module-format JS files. */
 
     /* Modules */
-    "module": "commonjs",
+    "module": "ES2020",
     "moduleResolution": "Node",
     /* Specify what module code is generated. */
     // "rootDir": "./",                                  /* Specify the root folder within your source files. */
@@ -80,7 +80,7 @@
     /* Ensure that casing is correct in imports. */
     /* Type Checking */
     "strict": true,
-    "allowJs": true,
+    "allowJs": false,
     /* Enable all strict type-checking options. */
     // "noImplicitAny": true,                            /* Enable error reporting for expressions and declarations with an implied 'any' type. */
     // "strictNullChecks": true,                         /* When type checking, take into account 'null' and 'undefined'. */
