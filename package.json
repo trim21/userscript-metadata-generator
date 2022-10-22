@@ -1,6 +1,6 @@
 {
   "name": "userscript-metadata-generator",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A package to generate userscript metadata string from object",
   "types": "./dist/esm/index.d.ts",
   "exports": {
