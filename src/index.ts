@@ -24,15 +24,17 @@ function parseAuthor(author: Author): string {
 type Value = string | string[] | undefined | null | { [key: string]: string };
 type Line = [string, string];
 
-type Localization = string | {
-  [key: string]: string;
-};
+type Localization =
+  | string
+  | {
+      [key: string]: string;
+    };
 
 export type Metadata = {
-  name?: Localization
+  name?: Localization;
   description?: Localization;
   author?: Author;
-  resource?: { [keys: string]: string };
+  resource?: string[] | { [keys: string]: string };
   [keys: string]: Value;
 };
 
@@ -87,7 +89,11 @@ function anyField(key: string, value: Value): Array<[string, string]> {
   });
 }
 
-function resource(o: { [keys: string]: string }): Array<string> {
+function resource(o: string[] | { [keys: string]: string }): Array<string> {
+  if (Array.isArray(o)) {
+    return o;
+  }
+
   const pad = longestLength(Object.keys(o));
   return Object.entries(o).map(([key, value]) => {
     return `${key.padEnd(pad)} ${value}`;

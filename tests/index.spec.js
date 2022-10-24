@@ -35,6 +35,19 @@ describe('generate metadata block', function () {
     ]);
   });
 
+  test('resource []string', function () {
+    expect(
+      generateLines({
+        resource: ['A https://resource.a', 'B https://resource.b'],
+      }),
+    ).toEqual([
+      '// ==UserScript==',
+      '// @resource   A https://resource.a',
+      '// @resource   B https://resource.b',
+      '// ==/UserScript==',
+    ]);
+  });
+
   test('auth only name', function () {
     expect(generateLines({ author: { name: 'trim21' } })).toEqual([
       '// ==UserScript==',
