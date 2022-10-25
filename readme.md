@@ -44,13 +44,7 @@ const metadata = {
   include: ['http://www.tampermonkey.net/*', 'http://*', 'https://*', '/^https://www.tampermonkey.net/.*$/'],
 }
 
-esbuild.buildSync({
-  entryPoints: [path.resolve(__dirname, 'input.js')],
-  banner: {
-    js: generate(metadata) + '\n',
-  },
-  outfile: path.resolve(__dirname, 'output.js'),
-});
+console.log(generate(metadata))
 
 ```
 
@@ -75,5 +69,32 @@ and you will get output like this:
 // @include    /^https://www.tampermonkey.net/.*$/
 // ==/UserScript==
 
-...
 ```
+
+## With bundle
+
+
+### webpack
+
+https://github.com/trim21/userscript-metadata-webpack-plugin
+
+### esbuild
+
+```js
+const path = require('path');
+
+const esbuild = require('esbuild');
+const generate = require('userscript-metadata-generator');
+
+const metadata = {};
+
+esbuild.buildSync({
+  entryPoints: [path.resolve(__dirname, 'input.js')],
+  banner: {
+    js: generate(metadata) + '\n',
+  },
+  outfile: path.resolve(__dirname, 'output.js'),
+});
+```
+
+And I don't use other bundler to build my userscript, so I can't give a example here.
