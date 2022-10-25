@@ -106,14 +106,12 @@ const banner2 = require('rollup-plugin-banner2')
 const generate = require('userscript-metadata-generator');
 
 module.exports = {
-  plugins: [
-    banner2(() => generate({name: "hello"}) + '\n\n')
-  ],
   input: path.resolve(__dirname, 'index.js'),
   output: [
     {
       format: 'iife',
       file: path.resolve(__dirname, "dist/index.uset.js"),
+      plugins: [banner2(() => generate({ name: 'hello' }) + '\n\n')],
     },
   ],
 }
