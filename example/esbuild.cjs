@@ -27,9 +27,9 @@ const metadata = {
 }
 
 esbuild.buildSync({
-  entryPoints: [path.resolve(__dirname, 'input.js')],
+  entryPoints: [path.resolve(__dirname, 'src/input.js')],
   banner: {
     js: generate(metadata) + '\n',
   },
-  outfile: path.resolve(__dirname, 'output.js'),
+  outfile: path.resolve(__dirname, 'out/esbuild.js'),
 });

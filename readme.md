@@ -89,12 +89,32 @@ const generate = require('userscript-metadata-generator');
 const metadata = {};
 
 esbuild.buildSync({
-  entryPoints: [path.resolve(__dirname, 'input.js')],
+  entryPoints: [path.resolve(__dirname, 'index.js')],
   banner: {
     js: generate(metadata) + '\n',
   },
-  outfile: path.resolve(__dirname, 'output.js'),
+  outfile: path.resolve(__dirname, 'dist/index.user.js'),
 });
 ```
 
-And I don't use other bundler to build my userscript, so I can't give a example here.
+## rollup
+
+```js
+const path = require('path');
+
+const banner2 = require('rollup-plugin-banner2')
+const generate = require('userscript-metadata-generator');
+
+module.exports = {
+  plugins: [
+    banner2(() => generate({name: "hello"}) + '\n\n')
+  ],
+  input: path.resolve(__dirname, 'index.js'),
+  output: [
+    {
+      format: 'iife',
+      file: path.resolve(__dirname, "dist/index.uset.js"),
+    },
+  ],
+}
+```
