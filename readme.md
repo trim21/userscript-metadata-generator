@@ -80,39 +80,8 @@ https://github.com/trim21/userscript-metadata-webpack-plugin
 
 ### esbuild
 
-```js
-const path = require('path');
-
-const esbuild = require('esbuild');
-const generate = require('userscript-metadata-generator');
-
-const metadata = {};
-
-esbuild.buildSync({
-  entryPoints: [path.resolve(__dirname, 'index.js')],
-  banner: {
-    js: generate(metadata) + '\n',
-  },
-  outfile: path.resolve(__dirname, 'dist/index.user.js'),
-});
-```
+[example/esbuild.cjs](https://github.com/trim21/userscript-metadata-generator/blob/master/example/esbuild.cjs)
 
 ## rollup
 
-```js
-const path = require('path');
-
-const banner2 = require('rollup-plugin-banner2')
-const generate = require('userscript-metadata-generator');
-
-module.exports = {
-  input: path.resolve(__dirname, 'index.js'),
-  output: [
-    {
-      format: 'iife',
-      file: path.resolve(__dirname, "dist/index.uset.js"),
-      plugins: [banner2(() => generate({ name: 'hello' }) + '\n\n')],
-    },
-  ],
-}
-```
+[example/rollup.config.js](https://github.com/trim21/userscript-metadata-generator/blob/master/example/rollup.config.js)

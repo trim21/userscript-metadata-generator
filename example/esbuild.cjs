@@ -2,7 +2,7 @@ const path = require('path');
 
 const esbuild = require('esbuild');
 
-const generate = require('../');
+const generate = require('userscript-metadata-generator');
 
 const metadata = {
   name: {
@@ -31,5 +31,6 @@ esbuild.buildSync({
   banner: {
     js: generate(metadata) + '\n',
   },
+  bundle: true,
   outfile: path.resolve(__dirname, 'out/esbuild.js'),
 });

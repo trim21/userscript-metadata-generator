@@ -17,4 +17,12 @@
 // ==/UserScript==
 
 'use strict';
-console.log('hello');
+(() => {
+  // example/src/util.js
+  function helloWorld() {
+    console.log('hello world');
+  }
+
+  // example/src/input.js
+  helloWorld();
+})();
