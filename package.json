@@ -2,17 +2,19 @@
   "name": "userscript-metadata-generator",
   "version": "0.0.11",
   "description": "A package to generate userscript metadata string from object",
-  "types": "./dist/esm/index.d.ts",
-  "main": "./dist/cjs/index.cjs",
-  "module": "./dist/esm/index.mjs",
+  "types": "./dist/index.d.ts",
+  "source": "./src/index.ts",
   "exports": {
-    "import": "./dist/esm/index.mjs",
-    "require": "./dist/cjs/index.cjs"
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
   },
   "scripts": {
     "format": "prettier -w ./",
     "prebuild": "rimraf dist",
-    "build": "rollup -c",
+    "build": "unbuild",
     "prepublishOnly": "npm run build",
     "test": "jest",
     "prepare": "husky install",
@@ -64,8 +66,8 @@
     "rimraf": "^3.0.2",
     "rollup": "^3.2.3",
     "rollup-plugin-banner2": "^1.2.2",
-    "rollup-plugin-typescript2": "^0.34.1",
     "ts-jest": "^29.0.3",
-    "typescript": "^4.8.4"
+    "typescript": "^4.8.4",
+    "unbuild": "^0.9.4"
   }
 }
