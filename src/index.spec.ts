@@ -1,9 +1,9 @@
-const { describe, expect, test } = require('@jest/globals');
+import { describe, expect, test } from '@jest/globals';
 
-const generate = require('../src/index');
+import generate, { Metadata } from '../src/index';
 
-function generateLines(o) {
-  return generate.default(o).split('\n');
+function generateLines(o: Metadata) {
+  return generate(o).split('\n');
 }
 
 describe('generate metadata block', function () {
@@ -31,6 +31,22 @@ describe('generate metadata block', function () {
       '// ==UserScript==',
       '// @resource   A  https://resource.a',
       '// @resource   BB https://resource.b',
+      '// ==/UserScript==',
+    ]);
+  });
+
+  test('resource issue 4', function () {
+    expect(
+      generateLines({
+        resource: {
+          'icon-example-1': 'https://my.website.com/resource1.png',
+          'icon-example-2': 'https://my.website.com/resource2.png',
+        },
+      }),
+    ).toEqual([
+      '// ==UserScript==',
+      '// @resource   icon-example-1 https://my.website.com/resource1.png',
+      '// @resource   icon-example-2 https://my.website.com/resource2.png',
       '// ==/UserScript==',
     ]);
   });
