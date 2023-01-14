@@ -10,7 +10,7 @@ module.exports = {
     {
       format: 'iife',
       file: path.resolve(__dirname, 'out/rollup-output.js'),
-      plugins: [banner2(() => generate({ name: 'hello' }) + '\n\n')],
+      plugins: [banner2(() => generate({ name: 'hello', version: '0.0.1' }) + '\n\n')],
     },
   ],
 };
