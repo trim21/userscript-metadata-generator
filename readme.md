@@ -20,7 +20,7 @@ const path = require('path');
 const esbuild = require('esbuild');
 
 // or you can use import, esm is also suppotted
-const generate = require('userscript-metadata-generator');
+const { generate } = require('userscript-metadata-generator');
 
 const metadata = {
   name: {
@@ -42,10 +42,9 @@ const metadata = {
     SRIsecured2: 'http://www.tampermonkey.net/favicon.ico#md5=123434...;sha256=234234...',
   },
   include: ['http://www.tampermonkey.net/*', 'http://*', 'https://*', '/^https://www.tampermonkey.net/.*$/'],
-}
+};
 
-console.log(generate(metadata))
-
+console.log(generate(metadata));
 ```
 
 and you will get output like this:
@@ -68,11 +67,9 @@ and you will get output like this:
 // @include    https://*
 // @include    /^https://www.tampermonkey.net/.*$/
 // ==/UserScript==
-
 ```
 
 ## With bundle
-
 
 ### webpack
 

@@ -38,7 +38,7 @@ export type Metadata = {
   [keys: string]: Value;
 };
 
-export default function (metadata: Metadata) {
+export function generate(metadata: Metadata) {
   const lines: Array<Line> = [];
 
   for (const [key, value] of Object.entries(metadata)) {
@@ -67,6 +67,8 @@ export default function (metadata: Metadata) {
     '// ==/UserScript==',
   ].join('\n');
 }
+
+export default generate;
 
 function anyField(key: string, value: Value): Array<[string, string]> {
   if (typeof value === 'string') {

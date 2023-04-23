@@ -1,5 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["local>trim21/renovate-config", "local>trim21/renovate-config:js", "local>trim21/renovate-config:monthly"],
+  "extends": [
+    "local>trim21/renovate-config",
+    "local>trim21/renovate-config:js",
+    "local>trim21/renovate-config:monthly"
+  ],
   "automerge": true
 }

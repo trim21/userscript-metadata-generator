@@ -2,7 +2,7 @@ const path = require('path');
 
 const esbuild = require('esbuild');
 
-const generate = require('userscript-metadata-generator');
+const { generate } = require('userscript-metadata-generator');
 
 const metadata = {
   name: {
@@ -24,7 +24,7 @@ const metadata = {
     SRIsecured2: 'http://www.tampermonkey.net/favicon.ico#md5=123434...;sha256=234234...',
   },
   include: ['http://www.tampermonkey.net/*', 'http://*', 'https://*', '/^https://www.tampermonkey.net/.*$/'],
-}
+};
 
 esbuild.buildSync({
   entryPoints: [path.resolve(__dirname, 'src/input.js')],

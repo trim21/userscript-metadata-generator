@@ -2,7 +2,7 @@ const path = require('path');
 
 const banner2 = require('rollup-plugin-banner2');
 
-const generate = require('userscript-metadata-generator');
+const { generate } = require('userscript-metadata-generator');
 
 module.exports = {
   input: path.resolve(__dirname, 'src/input.js'),
