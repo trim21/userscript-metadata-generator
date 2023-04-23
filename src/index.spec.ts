@@ -109,4 +109,12 @@ describe('generate metadata block', function () {
       // ==/UserScript=="
     `);
   });
+
+  test('empty value', () => {
+    expect(generate({ noframes: '' })).toMatchInlineSnapshot(`
+      "// ==UserScript==
+      // @noframes
+      // ==/UserScript=="
+    `);
+  });
 });

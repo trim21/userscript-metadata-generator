@@ -25,6 +25,7 @@ const metadata: Metadata = {
     $: 'A test',
     de: 'Ein Test',
   },
+  noframes: '',
   version: '0.1.2',
   author: {
     name: 'trim21',
@@ -51,6 +52,7 @@ and you will get output like this:
 // ==UserScript==
 // @name       A test
 // @name:de    Ein Test
+// @noframes
 // @version    0.1.2
 // @author     trim21 <trim21.me@gmail.com>
 // @run-at     document-end

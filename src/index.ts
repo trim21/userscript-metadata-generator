@@ -31,6 +31,23 @@ export type Localized =
       [key: string]: string; // localized field value
     };
 
+type Grant =
+  | 'none'
+  | 'GM.getValue'
+  | 'GM_getValue'
+  | 'GM.setValue'
+  | 'GM_setValue'
+  | 'GM.openInTab'
+  | 'GM.deleteValue'
+  | 'GM.listValues'
+  | 'GM.getResourceUrl'
+  | 'GM.notification'
+  | 'GM.registerMenuCommand'
+  | 'GM.setClipboard'
+  | 'GM.xmlHttpRequest'
+  | 'unsafeWindow'
+  | string; // for new grant
+
 export type Metadata = {
   name?: Localized;
   namespace?: string;
@@ -43,6 +60,7 @@ export type Metadata = {
   version?: string;
   author?: Author;
   resource?: string[] | { [keys: string]: string };
+  grant?: Grant[];
   [keys: string]: Value;
 };
 
@@ -71,7 +89,7 @@ export function generate(metadata: Metadata) {
 
   return [
     '// ==UserScript==',
-    ...lines.map(([key, value]) => `// @${key.padEnd(pad)}${value}`),
+    ...lines.map(([key, value]) => `// @${key.padEnd(pad)}${value}`.trimEnd()),
     '// ==/UserScript==',
   ].join('\n');
 }
