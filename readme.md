@@ -16,11 +16,11 @@ npm i userscript-metadata-generator -D
 
 ```typescript
 // or you can use import, esm is also suppotted
-const { generate } = require('userscript-metadata-generator');
+import { generate, Metadata } from 'userscript-metadata-generator';
 // or
-// import { generate } from 'userscript-metadata-generator';
+// const { generate } = require('userscript-metadata-generator');
 
-const metadata = {
+const metadata: Metadata= {
   name: {
     $: 'A test',
     de: 'Ein Test',
