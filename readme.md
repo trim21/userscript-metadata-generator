@@ -15,16 +15,14 @@ npm i userscript-metadata-generator -D
 ## Usage
 
 ```typescript
-const path = require('path');
-
-const esbuild = require('esbuild');
-
 // or you can use import, esm is also suppotted
 const { generate } = require('userscript-metadata-generator');
+// or
+// import { generate } from 'userscript-metadata-generator';
 
 const metadata = {
   name: {
-    '': 'A test',
+    $: 'A test',
     de: 'Ein Test',
   },
   version: '0.1.2',
