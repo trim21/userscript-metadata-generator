@@ -18,7 +18,7 @@ npm i userscript-metadata-generator -D
 // or you can use import, esm is also suppotted
 import { userscriptMetadataGenerator, Metadata } from 'userscript-metadata-generator';
 // or
-// const { generate } = require('userscript-metadata-generator');
+// const { userscriptMetadataGenerator } = require('userscript-metadata-generator');
 
 const metadata: Metadata = {
   name: {
