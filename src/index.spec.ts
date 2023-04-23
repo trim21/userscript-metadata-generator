@@ -1,6 +1,6 @@
 import { describe, expect, test } from '@jest/globals';
 
-import generate, { Metadata } from '../src/index';
+import generate, { Localized, Metadata } from '../src/index';
 
 function generateLines(o: Metadata) {
   return generate(o).split('\n');
@@ -82,5 +82,31 @@ describe('generate metadata block', function () {
 
   test('auth undefined', function () {
     expect(generateLines({})).toEqual(['// ==UserScript==', '// ==/UserScript==']);
+  });
+
+  test('i18n name', () => {
+    expect(
+      generate({
+        name: { $: 'default name', cs: 'cs name' },
+      }),
+    ).toMatchInlineSnapshot(`
+      "// ==UserScript==
+      // @name      default name
+      // @name:cs   cs name
+      // ==/UserScript=="
+    `);
+  });
+
+  test('i18n name2', () => {
+    expect(
+      generate({
+        name: { '': 'default name', cs: 'cs name' } as unknown as Localized,
+      }),
+    ).toMatchInlineSnapshot(`
+      "// ==UserScript==
+      // @name      default name
+      // @name:cs   cs name
+      // ==/UserScript=="
+    `);
   });
 });

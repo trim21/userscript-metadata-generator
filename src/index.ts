@@ -24,16 +24,17 @@ function parseAuthor(author: Author): string {
 type Value = string | string[] | undefined | null | { [key: string]: string };
 type Line = [string, string];
 
-type Localization =
+export type Localized =
   | string
   | {
-      [key: string]: string;
+      $: string; // main field value
+      [key: string]: string; // localized field value
     };
 
 export type Metadata = {
-  name?: Localization;
+  name?: Localized;
   namespace?: string;
-  description?: Localization;
+  description?: Localized;
   license?: string;
   include?: string[];
   require?: string[];
@@ -90,8 +91,12 @@ function anyField(key: string, value: Value): Array<[string, string]> {
     return [];
   }
 
+  if (value[''] && value['$']) {
+    throw new Error(`failed to serialized field ${key}, use remove can't use key "" with "$"`);
+  }
+
   return Object.entries(value).map(([k, v]) => {
-    if (k === '') {
+    if (k === '' || k === '$') {
       return [`${key}`, v];
     }
     return [`${key}:${k}`, v];
