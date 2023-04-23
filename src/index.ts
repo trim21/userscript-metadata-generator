@@ -32,14 +32,14 @@ type Localization =
 
 export type Metadata = {
   name?: Localization;
-  namespace: string;
+  namespace?: string;
   description?: Localization;
-  license: string;
-  include: string[];
-  require: string[];
-  connect: string[];
+  license?: string;
+  include?: string[];
+  require?: string[];
+  connect?: string[];
   'run-at'?: 'document-end' | 'document-start' | 'document-idle' | string;
-  version: string;
+  version?: string;
   author?: Author;
   resource?: string[] | { [keys: string]: string };
   [keys: string]: Value;
