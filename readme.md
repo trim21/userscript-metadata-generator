@@ -16,7 +16,7 @@ npm i userscript-metadata-generator -D
 
 ```typescript
 // or you can use import, esm is also suppotted
-import { generate, Metadata } from 'userscript-metadata-generator';
+import { userscriptMetadataGenerator, Metadata } from 'userscript-metadata-generator';
 // or
 // const { generate } = require('userscript-metadata-generator');
 
@@ -43,7 +43,7 @@ const metadata: Metadata = {
   include: ['https://www.tampermonkey.net/*', 'https://*', 'https://*', '/^https://www.tampermonkey.net/.*$/'],
 };
 
-console.log(generate(metadata));
+console.log(userscriptMetadataGenerator(metadata));
 ```
 
 and you will get output like this:

@@ -64,7 +64,7 @@ export type Metadata = {
   [keys: string]: Value;
 };
 
-export function generate(metadata: Metadata) {
+export function userscriptMetadataGenerator(metadata: Metadata) {
   const lines: Array<Line> = [];
 
   for (const [key, value] of Object.entries(metadata)) {
@@ -94,6 +94,7 @@ export function generate(metadata: Metadata) {
   ].join('\n');
 }
 
+export const generate = userscriptMetadataGenerator;
 export default generate;
 
 function anyField(key: string, value: Value): Array<[string, string]> {

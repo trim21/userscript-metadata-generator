@@ -1,9 +1,9 @@
 import { describe, expect, test } from '@jest/globals';
 
-import generate, { Localized, Metadata } from '../src/index';
+import { userscriptMetadataGenerator, Localized, Metadata } from '../src/index';
 
 function generateLines(o: Metadata) {
-  return generate(o).split('\n');
+  return userscriptMetadataGenerator(o).split('\n');
 }
 
 describe('generate metadata block', function () {
@@ -86,7 +86,7 @@ describe('generate metadata block', function () {
 
   test('i18n name', () => {
     expect(
-      generate({
+      userscriptMetadataGenerator({
         name: { $: 'default name', cs: 'cs name' },
       }),
     ).toMatchInlineSnapshot(`
@@ -99,7 +99,7 @@ describe('generate metadata block', function () {
 
   test('i18n name2', () => {
     expect(
-      generate({
+      userscriptMetadataGenerator({
         name: { '': 'default name', cs: 'cs name' } as unknown as Localized,
       }),
     ).toMatchInlineSnapshot(`
@@ -111,7 +111,7 @@ describe('generate metadata block', function () {
   });
 
   test('empty value', () => {
-    expect(generate({ noframes: '' })).toMatchInlineSnapshot(`
+    expect(userscriptMetadataGenerator({ noframes: '' })).toMatchInlineSnapshot(`
       "// ==UserScript==
       // @noframes
       // ==/UserScript=="

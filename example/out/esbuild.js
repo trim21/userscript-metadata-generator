@@ -16,11 +16,11 @@
 // @include    /^https://www.tampermonkey.net/.*$/
 // ==/UserScript==
 
-'use strict';
+"use strict";
 (() => {
   // example/src/util.js
   function helloWorld() {
-    console.log('hello world');
+    console.log("hello world");
   }
 
   // example/src/input.js
