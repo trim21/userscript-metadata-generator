@@ -22,7 +22,6 @@
     "build-examples": "yarn build && node ./example/esbuild.cjs && rollup -c example/rollup.config.js",
     "prepublishOnly": "npm run build",
     "test": "jest",
-    "prepare": "husky install",
     "lint-staged": "lint-staged"
   },
   "lint-staged": {
