@@ -20,7 +20,7 @@
     "prebuild": "rimraf dist",
     "build": "unbuild",
     "build-examples": "yarn build && node ./example/esbuild.cjs && rollup -c example/rollup.config.js",
-    "prepublishOnly": "npm run build",
+    "prepack": "yarn build",
     "test": "jest",
     "lint-staged": "lint-staged"
   },
