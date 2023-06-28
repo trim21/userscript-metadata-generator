@@ -53,14 +53,14 @@ export type Metadata = {
   namespace?: string;
   description?: Localized;
   license?: string;
-  include?: string[];
-  require?: string[];
-  connect?: string[];
+  include?: string[] | string;
+  require?: string[] | string;
+  connect?: string[] | string;
   'run-at'?: 'document-end' | 'document-start' | 'document-idle' | string;
   version?: string;
   author?: Author;
   resource?: string[] | { [keys: string]: string };
-  grant?: Grant[];
+  grant?: Grant[] | Grant;
   [keys: string]: Value;
 };
 
