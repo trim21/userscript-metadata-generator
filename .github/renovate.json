@@ -4,5 +4,6 @@
     "local>trim21/renovate-config",
     "local>trim21/renovate-config:js",
     "local>trim21/renovate-config:monthly"
-  ]
+  ],
+  "automerge": true
 }
