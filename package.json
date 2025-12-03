@@ -61,7 +61,7 @@
   "license": "MIT",
   "devDependencies": {
     "@jest/globals": "^30.0.0",
-    "esbuild": "^0.25.0",
+    "esbuild": "^0.27.0",
     "husky": "^9.0.0",
     "jest": "^30.0.0",
     "jest-config": "^30.0.0",
