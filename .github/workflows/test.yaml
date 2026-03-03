@@ -30,3 +30,10 @@ jobs:
       - run: yarn test
 
       - run: yarn build
+
+  test-pass:
+    name: test-pass
+    needs: [main]
+    runs-on: ubuntu-slim
+    steps:
+      - run: "true"
