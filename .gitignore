@@ -2,9 +2,3 @@ node_modules
 .idea
 .vscode
 dist/
-
-yarn-error.log
-
-.yarn/*
-!.yarn/releases
-!.yarn/plugins

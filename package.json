@@ -19,8 +19,9 @@
     "format": "prettier -w ./",
     "prebuild": "rimraf dist",
     "build": "unbuild",
-    "build-examples": "yarn build && node ./example/esbuild.cjs && rollup -c example/rollup.config.js",
-    "prepack": "yarn build",
+    "build-examples": "pnpm build && node ./example/esbuild.cjs && rollup -c example/rollup.config.js",
+    "prepack": "pnpm build",
+    "prepare": "husky",
     "test": "jest",
     "lint-staged": "lint-staged"
   },
@@ -74,5 +75,5 @@
     "typescript": "^6.0.0",
     "unbuild": "^3.0.0"
   },
-  "packageManager": "yarn@4.18.0"
+  "packageManager": "pnpm@11.26.0"
 }
