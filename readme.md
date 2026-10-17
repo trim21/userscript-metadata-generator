@@ -4,7 +4,7 @@
 
 require:
 
-- nodejs >= 16 (tested on 20, 22, 24)
+- nodejs >= 22 (tested on 22, 24, 26)
 
 ## install
 
